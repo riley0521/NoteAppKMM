@@ -3,9 +3,12 @@ package com.rpfcoding.noteappkmm.android.note_list
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.rpfcoding.noteappkmm.domain.note.Note
 import com.rpfcoding.noteappkmm.domain.note.NoteDataSource
 import com.rpfcoding.noteappkmm.domain.note.SearchNotes
+import com.rpfcoding.noteappkmm.domain.time.DateTimeUtil
+import com.rpfcoding.noteappkmm.presentation.RedOrangeHex
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
