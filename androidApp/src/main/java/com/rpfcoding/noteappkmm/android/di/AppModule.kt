@@ -1,15 +1,11 @@
 package com.rpfcoding.noteappkmm.android.di
 
-import android.app.Application
-import com.rpfcoding.noteappkmm.data.local.DatabaseDriverFactory
-import com.rpfcoding.noteappkmm.data.note.SqlDelightNoteDataSource
-import com.rpfcoding.noteappkmm.database.NoteDatabase
-import com.rpfcoding.noteappkmm.domain.note.NoteDataSource
-import com.squareup.sqldelight.db.SqlDriver
+import com.rpfcoding.noteappkmm.data.remote.HttpClientFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.ktor.client.*
 import javax.inject.Singleton
 
 @Module
@@ -18,15 +14,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSqlDriver(
-        app: Application
-    ): SqlDriver {
-        return DatabaseDriverFactory(app).createDriver()
-    }
-
-    @Provides
-    @Singleton
-    fun provideNoteDataSource(driver: SqlDriver): NoteDataSource {
-        return SqlDelightNoteDataSource(NoteDatabase(driver))
+    fun provideHttpClient(): HttpClient {
+        return HttpClientFactory().create()
     }
 }

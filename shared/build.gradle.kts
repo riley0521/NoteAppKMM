@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.squareup.sqldelight")
+    kotlin("plugin.serialization") version "1.8.0"
 }
 
 kotlin {
@@ -22,6 +22,12 @@ kotlin {
             dependencies {
                 implementation("com.squareup.sqldelight:runtime:1.5.3")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+                implementation("io.ktor:ktor-client-core:2.1.3")
+                implementation("io.ktor:ktor-client-content-negotiation:2.1.3")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.3")
             }
         }
         val commonTest by getting {
@@ -31,7 +37,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:1.5.3")
+                implementation("io.ktor:ktor-client-android:2.1.3")
             }
         }
         val androidTest by getting
@@ -40,7 +46,7 @@ kotlin {
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:1.5.3")
+                implementation("io.ktor:ktor-client-darwin:2.1.3")
             }
 
             dependsOn(commonMain)
@@ -57,13 +63,6 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
-    }
-}
-
-sqldelight {
-    database("NoteDatabase") {
-        packageName = "com.rpfcoding.noteappkmm.database"
-        sourceFolders = listOf("sqldelight")
     }
 }
 
