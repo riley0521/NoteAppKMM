@@ -4,6 +4,12 @@ plugins {
     kotlin("plugin.serialization") version "1.8.0"
 }
 
+kotlin.targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java) {
+    binaries.all {
+        binaryOptions["memoryModel"] = "experimental"
+    }
+}
+
 kotlin {
     android()
     
