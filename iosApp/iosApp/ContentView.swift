@@ -11,8 +11,15 @@ struct ContentView: View {
         self.viewModel = ViewModel(accountRepository: accountRepository)
     }
     
+    let cipher = AesCipher()
+    
 	var body: some View {
-        VStack {
+        let encrypted = cipher.encrypt(decrypted: "12345678")
+        print(encrypted)
+        let decrypted = cipher.decrypt(encrypted: "QTM2MUYzMkIzNTRCOUNGM4jeGPKHTw7tdG7xVLdW2f6x6FmPfvDI2dyx7FIm3RgZLJBgfCnW/tXNJOI4vUfqpgzeuwgPxTijaWYlwy7LnAIfAYr38CpiHKkrpPedpb/Q")
+        print("DECRYPTED: \(decrypted)")
+        
+        return VStack {
             Text(viewModel.text)
         }
 	}

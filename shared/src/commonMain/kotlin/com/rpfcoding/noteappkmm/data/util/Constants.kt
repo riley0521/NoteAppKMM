@@ -1,12 +1,16 @@
 package com.rpfcoding.noteappkmm.data.util
 
+import kotlin.random.Random
+
 object Constants {
     const val SQL_KEY = "eurekare_key"
     const val ENCRYPTION_KEY = "EUREKAREEUREKARE"
 
     val HEX_ARRAY = "0123456789ABCDEF".toCharArray()
 
-    fun bytesToHex(bytes: ByteArray): String {
+    fun bytesToHex(): String {
+        val bytes = Random.nextBytes(8)
+
         val hexChars = CharArray(bytes.size * 2)
         for(i in bytes.indices) {
             val v = bytes[i].toInt() and 0xFF
